@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="">
+      <input type="text" id="name" placeholder="Product Name" />
+      <input type="text" id="category" placeholder="Category" />
+      <input type="text" id="image" placeholder="Image url" />
+      <input type="number" id="price" placeholder="Price" />
+      <select id="gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+      <div>
+        <label for="">Sold</label>
+        <select id="sold">
+          <option value="false">false</option>
+          <option value="true">true</option>
+        </select>
+      </div>
+      <input type="submit" id="add" />
+    </form>
+  </body>
+</html>
+<script>
+  function Products(n, c, i, p, g, s) {
+    this.name = n;
+    this.category = c;
+    this.imgURL = i;
+    this.price = p;
+    this.gender = g;
+    this.sold = s;
+  }
+
+  document.querySelector("form").addEventListener("submit", addProducts);
+
+  var data = [];
+
+  function addProducts() {
+    event.preventDefault();
+    let name = document.querySelector("#name").value;
+    let category = document.querySelector("#category").value;
+    let imgURL = document.querySelector("#image").value;
+    let price = document.querySelector("#price").value;
+    let gender = document.querySelector("#gender").value;
+    let sold = document.querySelector("#sold").value;
+
+    // console.log(name, category, imgURL, price, gender, sold);
+
+    var p1 = new Products(name, category, imgURL, price, gender, sold);
+    data.push(p1);
+    console.log(data);
+    localStorage.setItem("Products", JSON.stringify(p1));
+
+    document.querySelector("#name").textContent = "";
+    document.querySelector("#category").textContent = "";
+    document.querySelector("#image").textContent = "";
+    document.querySelector("#price").textContent = "";
+  }
+</script>
